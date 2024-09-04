@@ -12,7 +12,7 @@ export default function LoginForm(){
     const router = useRouter();
 
     async function handleFormSubmit(e:React.FormEvent<HTMLFormElement>){
-        console.log("THIS FORM CALLED")
+    console.log("THIS FORM CALLED")
         e.preventDefault();
 
         try {

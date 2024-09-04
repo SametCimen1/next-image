@@ -9,9 +9,14 @@ const nextConfig = {
             {
                 protocol:"https",
                 hostname:"albertcamusbucket.s3.us-east-2.amazonaws.com"
+            },
+            {
+                protocol:"https",
+                hostname:"albertcamusbucket.s3.amazonaws.com"
             }
         ]
     }
 };
+
 
 export default nextConfig;
