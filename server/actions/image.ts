@@ -34,9 +34,7 @@ export async function uploadFile(formData: FormData){
         Bucket: process.env.NEXT_PUBLIC_AWS_S3_BUCKET_NAME || '',
         Key: nanoid(),
       })
-      console.log("NANO ID KEY")
-      console.log(fields.key);
-      console.log('email');
+
 
       const formDataS3 = new FormData();
 
@@ -52,8 +50,7 @@ export async function uploadFile(formData: FormData){
       })
     
       const response = await uploadResponse.text();
-      console.log("RETURNED FROM NEW RESPONSE")
-      console.log(response);
+
     
 
       //await pool.query("INSERT INTO image_urls(image_url, user_email) VALUES($1, $2)", [fields.key, email])
@@ -72,3 +69,5 @@ export async function uploadFile(formData: FormData){
   console.log(error);
     return NextResponse.json({error:"Error uploading file"})
 }}
+
+

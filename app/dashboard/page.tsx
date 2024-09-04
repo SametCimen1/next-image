@@ -4,7 +4,9 @@ import { SessionProvider } from "next-auth/react"
 import ClientPage from '@/components/clientPage'
 import ImageUpload from '@/components/image/image-upload';
 import UserImages from '@/components/image/UserImages'
-import { createTheme, MantineProvider } from '@mantine/core';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+
 export default async function Page(){
     const session = await auth();
 
@@ -18,7 +20,7 @@ export default async function Page(){
 
 
     if(!session?.user){
-        redirect('/login')
+        redirect('/auth/login')
     }
 
 
@@ -27,9 +29,12 @@ export default async function Page(){
 
             <SessionProvider basePath={"/api/auth"} session={session}>
                 <ClientPage/>
-                <MantineProvider>
-                    <ImageUpload/>
-                </MantineProvider>
+                <ImageUpload/>
+                <Link href="/dashboard/create-image">
+                    <Button>
+                        Create-Image with AI
+                    </Button>
+                </Link>
                 <UserImages />
             </SessionProvider>
 

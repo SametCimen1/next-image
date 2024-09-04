@@ -1,11 +1,10 @@
 'use client'
 import {useCallback} from 'react'
-import { FileWithPath } from "@mantine/dropzone";
+
 import useSWRMutation from "swr/mutation";
-import { Group, Text, rem } from '@mantine/core';
+
 import { IconUpload, IconPhoto, IconX } from '@tabler/icons-react';
-import { Dropzone, DropzoneProps, IMAGE_MIME_TYPE } from '@mantine/dropzone';
-import '@mantine/core/styles.css';
+
 import { useSession } from "next-auth/react"
 import { useRouter } from 'next/navigation';
 import {useDropzone} from 'react-dropzone'
@@ -47,7 +46,8 @@ export default function ImageUpload(){
         <section className="container">
           <div {...getRootProps({className: 'dropzone disabled'})}>
             <input {...getInputProps()} />
-            <p>Drag 'n' drop some files here, or click to select files</p>
+            <p>Drag and drop some files here, or click to select files</p>
+            
           </div>
           <Button onClick={() => uploadFiles(acceptedFiles, session?.user?.email)}>Upload</Button>
         </section>
