@@ -33,12 +33,9 @@ async function uploadFileToS3(file:Buffer, fileName:string){
   })
 
   const response = await uploadResponse.text();
-  console.log("RETURNED FROM NEW RESPONSE")
-  console.log(response);
-
 
   if (uploadResponse.ok) {
-    console.log('File uploaded successfully');
+
 } else {
     console.error('Failed to upload file');
 }
@@ -65,12 +62,6 @@ export async function POST(request:Request){
       const file = formData.get('file');
       const email = formData.get('email');
 
-      console.log("FILE")
-      console.log(file)
-
-      console.log("email")
-      console.log(email)
-
 
       if(!file){
         return NextResponse.json({error:"File is required"}, {status:400})
@@ -81,9 +72,6 @@ export async function POST(request:Request){
         Bucket: process.env.NEXT_PUBLIC_AWS_S3_BUCKET_NAME || '',
         Key: nanoid(),
       })
-      console.log("NANO ID KEY")
-      console.log(fields.key);
-      console.log(email);
 
       const formDataS3 = new FormData();
 
@@ -99,8 +87,7 @@ export async function POST(request:Request){
       })
     
       const response = await uploadResponse.text();
-      console.log("RETURNED FROM NEW RESPONSE")
-      console.log(response);
+
     
 
       await pool.query("INSERT INTO image_urls(image_url, user_email) VALUES($1, $2)", [fields.key, email])
@@ -131,7 +118,7 @@ export async function PUT(request:Request){
     const response = await pool.query("SELECT * FROM image_urls WHERE user_email = $1", [email]);
 
 
-    console.log(response)
+
     const arrOfImageUrls=[]
 
     arrOfImageUrls.push(response.rows.map(obj => `https://albertcamusbucket.s3.us-east-2.amazonaws.com/${obj.image_url}`))

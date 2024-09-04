@@ -12,13 +12,12 @@ export default function LoginForm(){
     const router = useRouter();
 
     async function handleFormSubmit(e:React.FormEvent<HTMLFormElement>){
-    console.log("THIS FORM CALLED")
+
         e.preventDefault();
 
         try {
             const formData = new FormData(e.currentTarget);
-            console.log("FORM DATA BEFORE SUBMITTING")
-            console.log(formData)
+
             const response = await credentialLogin(formData)
             if(response.error){
 
