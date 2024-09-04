@@ -2,7 +2,12 @@ import { NextResponse } from "next/server";
 import {S3Client, PutObjectCommand, GetObjectCommand} from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import pool from '@/db';
-import { auth } from "@/auth";
+import { createPresignedPost } from "@aws-sdk/s3-presigned-post";
+
+import { nanoid } from "nanoid";
+import { revalidatePath } from "next/cache";
+
+
 
 const s3Client = new S3Client({
     region: process.env.NEXT_PUBLIC_AWS_REGION,
@@ -14,7 +19,30 @@ const s3Client = new S3Client({
 
 
 async function uploadFileToS3(file:Buffer, fileName:string){
+
+  const {url, fields} = await createPresignedPost(s3Client, {
+    Bucket: process.env.NEXT_PUBLIC_AWS_S3_BUCKET_NAME || '',
+    Key: nanoid(),
+  })
+
   const fileBuffer = file;
+
+  const uploadResponse = await fetch(url, {
+    method: "POST",
+    body: fileBuffer
+  })
+
+  const response = await uploadResponse.text();
+  console.log("RETURNED FROM NEW RESPONSE")
+  console.log(response);
+
+
+  if (uploadResponse.ok) {
+    console.log('File uploaded successfully');
+} else {
+    console.error('Failed to upload file');
+}
+  
   
 
   const params = {
@@ -29,26 +57,63 @@ async function uploadFileToS3(file:Buffer, fileName:string){
 }
 
 
-export async function POST(request:any){
+export async function POST(request:Request){
     try {
+
 
       const formData = await request.formData();
       const file = formData.get('file');
+      const email = formData.get('email');
+
+      console.log("FILE")
+      console.log(file)
+
+      console.log("email")
+      console.log(email)
+
 
       if(!file){
         return NextResponse.json({error:"File is required"}, {status:400})
       }
-      const buffer = Buffer.from(await file.arrayBuffer());
-      const fileName = await uploadFileToS3(buffer, file.name)
 
-      const session = await auth();
-      const email = session?.user?.email;
 
-      await pool.query("INSERT INTO image_urls(image_url, user_email) VALUES($1, $2)", [fileName, email])
-      console.log('FILEEEE NAMEEE')
-      console.log(fileName);
+      const {url, fields} = await createPresignedPost(s3Client, {
+        Bucket: process.env.NEXT_PUBLIC_AWS_S3_BUCKET_NAME || '',
+        Key: nanoid(),
+      })
+      console.log("NANO ID KEY")
+      console.log(fields.key);
+      console.log(email);
 
-      return NextResponse.json({success: true, fileName})
+      const formDataS3 = new FormData();
+
+        Object.entries(fields).forEach(([key, value]) => {
+            formDataS3.append(key, value);
+        })
+        formDataS3.append('file', formData.get('file') as string);
+
+
+      const uploadResponse = await fetch(url, {
+        method: "POST",
+        body: formDataS3
+      })
+    
+      const response = await uploadResponse.text();
+      console.log("RETURNED FROM NEW RESPONSE")
+      console.log(response);
+    
+
+      await pool.query("INSERT INTO image_urls(image_url, user_email) VALUES($1, $2)", [fields.key, email])
+    
+    
+      if (uploadResponse.ok) {
+        console.log('File uploaded successfully');
+    } else {
+        console.error('Failed to upload file');
+    }
+
+     
+      return NextResponse.json({success: true, msg:"ok"})
     } catch (error) {
       console.log("ERROR OCCURED")
       console.log(error);
@@ -57,41 +122,23 @@ export async function POST(request:any){
 }
 
 
-export async function GET(request:any){
+export async function PUT(request:Request){
   try {
-    // const formData = await request.formData();
-    // const file = formData.get('file');
 
-    // if(!file){
-    //   return NextResponse.json({error:"File is required"}, {status:400})
-    // }
-    // const buffer = Buffer.from(await file.arrayBuffer());
-    // const fileName = await uploadFileToS3(buffer, file.name)
+    const data = await request.json();
 
-    // return NextResponse.json({success: true, fileName})
-
-
-
-    const session = await auth();
-    const email = session?.user?.email;
-
-    console.log('req auth')
-    console.log(request.auth);
+    const email = data.userEmail;
     const response = await pool.query("SELECT * FROM image_urls WHERE user_email = $1", [email]);
 
-    console.log("RESPONSE FOROM RESPONSE")
-    console.log(response);
 
+    console.log(response)
+    const arrOfImageUrls=[]
 
-    const command = new GetObjectCommand({
-      Bucket: process.env.NEXT_PUBLIC_AWS_S3_BUCKET_NAME!,
-      Key: 'images/414472382_1060220901883264_96769501960867858_n.jpg-1725334362161',
-    });
+    arrOfImageUrls.push(response.rows.map(obj => `https://albertcamusbucket.s3.us-east-2.amazonaws.com/${obj.image_url}`))
 
-    const url = await getSignedUrl(s3Client, command);
-    console.log("RETURNED URLLLL")
-    console.log(url);
-    return NextResponse.json(url)
+    revalidatePath('/dashboard');
+    return NextResponse.json(arrOfImageUrls);
+   
 
   } catch (error) {
       console.log("ERROR IS")

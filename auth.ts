@@ -40,15 +40,10 @@ export const {
             if(credentials === null) return null;
                 try {
                     const user = getUserByEmail(credentials?.email);
-                    console.log('FOUND USER')
-                    console.log(user);
                     if(user){
-                        console.log("INSIDE USER ")
-                        console.log(user?.password)
-                        console.log(credentials)
+
                         const isMatch = user?.password === credentials?.password;
                         if(isMatch){
-                            console.log("THERE IS A MATCH")
                             return user;
                         }else{
                             throw new Error("password not correct!");
@@ -65,15 +60,11 @@ export const {
     callbacks:{
         async signIn({user, account, profile}){
             try {
-                console.log("INSIDE AUTH.TS")
-                console.log(account);
-                console.log(profile);
+
                 if(profile === undefined){
                     return false;
                 }else{
                     const response = await pool.query("SELECT * FROM users WHERE email = $1", [profile.email])
-                    console.log("RETURN FROM SELECT USERs")
-                    console.log(response)
                     if(response.rowCount === 0){
                         const userObj = {
                             name:profile.name,
