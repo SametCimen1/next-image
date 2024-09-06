@@ -3,8 +3,10 @@ import { ExternalLink } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import Image from 'next/image'
+import Link from 'next/link'
 
-const Hero12 = () => {
+const Hero = () => {
     return (
         <section className='relative overflow-hidden py-32'>
             <div className='container'>
@@ -272,89 +274,64 @@ const Hero12 = () => {
                     </defs>
                 </svg>
                 </div>
-                <div className='mx-auto flex max-w-5xl flex-col items-center'>
-                    <div className='z-10 flex flex-col items-center gap-6 text-center'>
-                        <img
-                            src='https://www.shadcnblocks.com/images/block/block-1.svg'
-                            alt='logo'
-                            className='h-16'
-                        />
-                        <Badge variant='outline'>UI Blocks</Badge>
+                <div className='mx-auto flex  flex-col items-center'>
+                    <div className='z-10 flex max-w-7xl flex-col items-center gap-6 text-center'>
                         <div>
-                            <h1 className='mb-6 text-pretty text-2xl font-bold lg:text-5xl'>
-                                Build your next project with Blocks
+                            <h1 className='mb-6 text-pretty text-7xl font-bold'>
+                            Unlock Your Creative Potential with <span className='text-blue-500'>AI-Powered</span> Images
                             </h1>
                             <p className='text-muted-foreground lg:text-xl'>
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Elig doloremque mollitia
-                                fugiat omnis! Porro facilis quo animi
-                                consequatur. Explicabo.
+                              Unlock your creativity with a seamless image editing platform that combines intuitive tools with AI-generated art.
                             </p>
                         </div>
                         <div className='mt-4 flex justify-center gap-2'>
-                            <Button>Get Started</Button>
-                            <Button variant='outline'>
-                                Learn more <ExternalLink className='ml-2 h-4' />
-                            </Button>
+                            <Link href = "/auth/login">
+                              <Button>
+                                Get Started
+                              </Button>
+                            </Link>
+                            <Link target='_blank' href = "https://github.com/sametcimen1/next-image">
+                              <Button variant={'outline'}>
+                                  Learn more <ExternalLink className='ml-2 h-4' />
+                              </Button>
+                            </Link>
                         </div>
                         <div className='mt-20 flex flex-col items-center gap-4'>
                             <p className='text-center: text-muted-foreground lg:text-left'>
-                                Built with open-source technologies
+                                Built with
                             </p>
                             <div className='flex flex-wrap items-center justify-center gap-4'>
-                                <a
-                                    href='#'
-                                    className={cn(
-                                        buttonVariants({ variant: 'outline' }),
-                                        'group px-3'
-                                    )}
-                                >
-                                    <img
-                                        src='https://www.shadcnblocks.com/images/block/logos/shadcn-ui-small.svg'
-                                        alt='company logo'
-                                        className='h-6 saturate-0 transition-all group-hover:saturate-100'
-                                    />
-                                </a>
-                                <a
-                                    href='#'
-                                    className={cn(
-                                        buttonVariants({ variant: 'outline' }),
-                                        'group px-3'
-                                    )}
-                                >
-                                    <img
-                                        src='https://www.shadcnblocks.com/images/block/logos/typescript-small.svg'
-                                        alt='company logo'
-                                        className='h-6 saturate-0 transition-all group-hover:saturate-100'
-                                    />
-                                </a>
+                                <Image 
+                                  src = "/icons/ts.svg"
+                                  width={50}
+                                  height={50}
+                                  alt="Typescript icon"
+                                />
+                                <Image 
+                                  src = "/icons/vercel.svg"
+                                  width={50}
+                                  height={50}
+                                  alt="Vercel icon"
+                                />
+                                <Image 
+                                  src = "/icons/next.svg"
+                                  width={50}
+                                  height={50}
+                                  alt="Nextjs icon"
+                                />
+                                <Image 
+                                  src = "/icons/aws.svg"
+                                  width={50}
+                                  height={50}
+                                  alt="AWS icon"
+                                />
+                                <Image 
+                                  src = "/icons/psql.svg"
+                                  width={50}
+                                  height={50}
+                                  alt="Postgresql icon"
+                                />
 
-                                <a
-                                    href='#'
-                                    className={cn(
-                                        buttonVariants({ variant: 'outline' }),
-                                        'group px-3'
-                                    )}
-                                >
-                                    <img
-                                        src='https://www.shadcnblocks.com/images/block/logos/react-icon.svg'
-                                        alt='company logo'
-                                        className='h-6 saturate-0 transition-all group-hover:saturate-100'
-                                    />
-                                </a>
-                                <a
-                                    href='#'
-                                    className={cn(
-                                        buttonVariants({ variant: 'outline' }),
-                                        'group px-3'
-                                    )}
-                                >
-                                    <img
-                                        src='https://www.shadcnblocks.com/images/block/logos/tailwind-small.svg'
-                                        alt='company logo'
-                                        className='h-4 saturate-0 transition-all group-hover:saturate-100'
-                                    />
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -364,4 +341,4 @@ const Hero12 = () => {
     )
 }
 
-export default Hero12
+export default Hero;

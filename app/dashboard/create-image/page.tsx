@@ -1,3 +1,5 @@
+'use client';
+import { Button } from "@/components/ui/button";
 import { createImageWithAI } from "@/server/actions/create-image"
 import { useAction } from "next-safe-action/hooks";
 import { useState, useEffect, KeyboardEvent } from "react";
@@ -24,16 +26,15 @@ export default function Page(){
 
       
     function onsubmit(){
-        if(textValue.textValue.length<1){
-        setError("Please enter a valid input")
+        if(textValue.length<1){
+        alert("Please enter a valid input")
         setTimeout(() => {
-            setError("")
+            // alert("")
         },3000)
         }else{
-        setTextValue({textValue:""});
-        setMessage("");
-        setIsWaiting(true);
-        execute(textValue);
+        setTextValue("");
+        // setIsWaiting(true);
+        execute({textValue});
         }
     }
 
@@ -46,13 +47,10 @@ export default function Page(){
                   required
                   value= {textValue}
                   onChange={(e) => setTextValue(e.target.value)}
-                  onKeyDown={
-                    (e) => {
-                      onkeydown(e);
-                    }
-                  }
-
-                  />
+              />
+              <Button onClick={() =>onsubmit()}>
+                Send
+              </Button>  
         </main>
     )
 }
