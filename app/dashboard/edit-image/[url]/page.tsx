@@ -1,6 +1,6 @@
 import EditImage from '@/components/image/edit-image';
-export default function Page(url:string){
+export default function Page({params}: {params: {url:string}}){
     return(
-        <EditImage url={url}/>
+        <EditImage url={params.url}/>
     )
 }

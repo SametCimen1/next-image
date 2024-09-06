@@ -6,7 +6,7 @@ import * as htmlToImage from 'html-to-image';
 import { Button } from "../ui/button";
 
 
-export default function Page({url}:{url:{params:{url:string}}}){
+export default function Page({url}:{url:string}){
     const domEl = useRef(null);
 
     const [brightness, setBrightness] = useState(1);
@@ -30,7 +30,7 @@ export default function Page({url}:{url:{params:{url:string}}}){
             <div className="h-full flex">
                 <Image
                     ref={domEl}
-                    src={getImageUrl(url?.params?.url)}
+                    src={getImageUrl(url)}
                     width={500}
                     height={500}
                     alt = "image from s3 bucket"
