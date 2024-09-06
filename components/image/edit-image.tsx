@@ -35,9 +35,9 @@ export default function Page({url}:{url:string}){
                     height={500}
                     alt = "image from s3 bucket"
                     className="w-2/3"
-                    style={{filter:`brightness(${brightness}) saturate(${saturation}%) blur(${blurAmount}px) sepia(${sepia}%)`}}
+                    style={{filter:`brightness(${brightness})  saturate(${saturation}%) blur(${blurAmount}px) sepia(${sepia}%)`}}
                 />
-                <div className="ml-2">
+                <div className="ml-2 ">
                     <div className="flex">
                         <label>Brightness</label>
                         <input type="range" min="0" max="200" onChange={(e) => setBrightness(parseInt(e.target.value)/100) } placeholder="Brightness"/>
