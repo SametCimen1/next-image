@@ -4,11 +4,13 @@ import Link from "next/link";
 import {getImageKey} from '@/lib/utils'
 import { useState } from "react";
 import ImageComponent from '@/components/image/imageComponent';
+import getBaseURL from '@/lib/base-url';
+
 async function getImages(){
     const session = await auth();
     const email = session?.user?.email;
 
-    const url = "http://localhost:3000/api/s3-upload"
+    const url = getBaseURL();
     const response = await fetch(url, { method: "PUT", body: JSON.stringify({userEmail: email}) });
     const returnValue = await response.json();
     return returnValue[0];
