@@ -10,7 +10,7 @@ async function getImages(){
     const session = await auth();
     const email = session?.user?.email;
 
-    const url = getBaseURL();
+    const url = "https://next-image-pied.vercel.app/api/s3-upload";
     const response = await fetch(url, { method: "PUT", body: JSON.stringify({userEmail: email}) });
     const returnValue = await response.json();
     return returnValue[0];
