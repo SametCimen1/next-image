@@ -2,7 +2,8 @@ import { auth } from "@/auth";
 import Image from "next/image"
 import Link from "next/link";
 import {getImageKey} from '@/lib/utils'
-
+import { useState } from "react";
+import ImageComponent from '@/components/image/imageComponent';
 async function getImages(){
     const session = await auth();
     const email = session?.user?.email;
@@ -18,21 +19,15 @@ export default async function UserImages(){
     const image_url = await getImages();
 
 
+
  
 
     return(
-        <div className="mt-5">
+        <div className="mt-5 w-full">
             <span>My Images</span>
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap gap-4">
                 {image_url.map((obj:string) => (
-                    <Link key={obj} href = {`/dashboard/edit-image/${getImageKey(obj)}`}>
-                        <Image 
-                            src={obj}
-                            width={500}
-                            height={500}
-                            alt = "image from aws s3"
-                        />
-                    </Link>
+                    <ImageComponent key={obj} obj = {obj}/>
                 ))}
             </div>
         </div>

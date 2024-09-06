@@ -43,13 +43,15 @@ export default function ImageUpload(){
     }
     
     return (
-        <section className="container">
-          <div {...getRootProps({className: 'dropzone disabled'})}>
+        <section className="container w-full">
+          <div {...getRootProps({className: 'dropzone disabled cursor-pointer border border-dashed '})}>
             <input {...getInputProps()} />
             <p>Drag and drop some files here, or click to select files</p>
             
           </div>
-          <Button onClick={() => uploadFiles(acceptedFiles, session?.user?.email)}>Upload</Button>
+          <Button 
+            className='mt-5'
+            onClick={() => uploadFiles(acceptedFiles, session?.user?.email)}>Upload</Button>
         </section>
     );
 }

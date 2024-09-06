@@ -13,6 +13,10 @@ const nextConfig = {
             {
                 protocol:"https",
                 hostname:"albertcamusbucket.s3.amazonaws.com"
+            },
+            {
+                protocol:"https",
+                hostname:"skillicons.dev"
             }
         ]
     }

@@ -11,7 +11,7 @@ export async function socialLogin(formData:FormData){
         await signIn(action.toString(), { redirectTo: '/dashboard' });
     } else {
         console.error('Action is null');
-        // Handle the null case, e.g., show an error message
+        return new Error("error occured");
     }
 }
 

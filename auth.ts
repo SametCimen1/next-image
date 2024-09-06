@@ -60,18 +60,17 @@ export const {
     callbacks:{
         async signIn({user, account, profile}){
             try {
-
                 if(profile === undefined){
                     return false;
                 }else{
-                    const response = await pool.query("SELECT * FROM users WHERE email = $1", [profile.email])
+                    const response = await pool.query(`SELECT * FROM  "user" WHERE email = $1`, [profile.email])
                     if(response.rowCount === 0){
                         const userObj = {
                             name:profile.name,
                             email: profile.email,
                             image_url: profile.avatar_url    
                         }
-                        await pool.query("INSERT INTO users(email, name, profile_image_url) VALUES($1, $2, $3)", [userObj.email, userObj.name, userObj.image_url]);
+                        await pool.query("INSERT INTO user(email, name, profile_image_url) VALUES($1, $2, $3)", [userObj.email, userObj.name, userObj.image_url]);
                         return true;
                     }else{
                         return true;
@@ -80,7 +79,7 @@ export const {
                 }
 
             } catch (error) {
-                console.log("ERROR THORWED")
+                console.log("ERROR")
                 console.log(error)
                 return false;
             }
