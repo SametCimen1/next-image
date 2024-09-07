@@ -4,9 +4,9 @@ import useSWRMutation from "swr/mutation";
 import { IconUpload, IconPhoto, IconX } from '@tabler/icons-react';
 import { useSession } from "next-auth/react"
 import { useRouter } from 'next/navigation';
-import {useDropzone} from 'react-dropzone'
+import {useDropzone, FileWithPath } from 'react-dropzone'
 import { Button } from '../ui/button';
-import { Download } from 'lucide-react';
+import { Download, Files } from 'lucide-react';
 
 async function uploadDocuments(
     url: string,
@@ -49,11 +49,15 @@ export default function ImageUpload(){
             }
         }
     }
-    const files = acceptedFiles.map(file => (
-        <li key={file.size}>
-          {file.path} 
-        </li>
-      ));
+    const files = acceptedFiles.map((file:FileWithPath) => {
+      return(
+        (
+          <li key={file.size}>
+            {file.path}
+          </li>
+        )
+      )
+    });
 
       
     return (
