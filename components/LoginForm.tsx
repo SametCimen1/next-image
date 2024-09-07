@@ -150,7 +150,7 @@ export default function LoginForm(){
                                 </Button>
                                 <Button className="px-0" size = {'sm'} variant={'link'}>
                                     <Link href="/auth/signup">
-                                        Don't have an account?
+                                        Don&apos;t have an account?
                                     </Link>
                                 </Button>   
                             </div>

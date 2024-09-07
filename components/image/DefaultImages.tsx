@@ -12,10 +12,9 @@ export default function Page(){
                 {urls.map((image_url) => (
                     <Link
                         href={`dashboard/edit-image/${image_url}`}
-                        
+                        key={image_url}
                     >
                         <Image 
-                            key={image_url}
                             src={getImageUrl(image_url)}
                             width={200}
                             height={200}
