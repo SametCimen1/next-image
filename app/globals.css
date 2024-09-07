@@ -75,3 +75,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+.customWidth{
+  width: calc(12 / var(12)* 100%);
+}

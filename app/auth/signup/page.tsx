@@ -1,7 +1,8 @@
+import RegisterForm from '@/components/RegisterForm'
 export default function Page(){
     return(
         <div>
-            Sign up Page
+            <RegisterForm/>
         </div>
     )
 }

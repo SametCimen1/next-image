@@ -22,8 +22,8 @@ import { FormError } from "./form-error";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-export default function LoginForm(){
 
+export default function Page(){
     const router = useRouter();
     const [showTwoFactor, setShowTwoFactor] = useState(false);
     const [error, setError] = useState("");
@@ -138,6 +138,21 @@ export default function LoginForm(){
                                     </FormItem>
                                     )}
                                 />
+                                <FormLabel>Enter Password Again</FormLabel>
+                                <FormField
+                                    control={form.control}
+                                    name="password"
+                                    render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel />
+                                        <FormControl>
+                                            <Input {...field} placeholder="**********" type='passwordConfirmation' autoComplete="current-password"/>
+                                        </FormControl>
+                                        <FormDescription />
+                                        <FormMessage />
+                                    </FormItem>
+                                    )}
+                                />
                                 </>
                             )}
                              <FormSuccess message = {success}/>
@@ -149,8 +164,8 @@ export default function LoginForm(){
                                     </Link>
                                 </Button>
                                 <Button className="px-0" size = {'sm'} variant={'link'}>
-                                    <Link href="/auth/signup">
-                                        Don't have an account?
+                                    <Link href="/auth/login">
+                                        Have an account?
                                     </Link>
                                 </Button>   
                             </div>
@@ -165,7 +180,7 @@ export default function LoginForm(){
                 </Form>
             </div>
             <div className="border  p-4 max-w-3xl mx-auto">
-                <SocialLoginForm type="login"/>
+                <SocialLoginForm type="register"/>
             </div>
         </div>
     )

@@ -296,44 +296,6 @@ const Hero = () => {
                               </Button>
                             </Link>
                         </div>
-                        <div className='mt-20 flex flex-col items-center gap-4'>
-                            <p className='text-center: text-muted-foreground lg:text-left'>
-                                Built with
-                            </p>
-                            <div className='flex flex-wrap items-center justify-center gap-4'>
-                                <Image 
-                                  src = "/icons/ts.svg"
-                                  width={50}
-                                  height={50}
-                                  alt="Typescript icon"
-                                />
-                                <Image 
-                                  src = "/icons/vercel.svg"
-                                  width={50}
-                                  height={50}
-                                  alt="Vercel icon"
-                                />
-                                <Image 
-                                  src = "/icons/next.svg"
-                                  width={50}
-                                  height={50}
-                                  alt="Nextjs icon"
-                                />
-                                <Image 
-                                  src = "/icons/aws.svg"
-                                  width={50}
-                                  height={50}
-                                  alt="AWS icon"
-                                />
-                                <Image 
-                                  src = "/icons/psql.svg"
-                                  width={50}
-                                  height={50}
-                                  alt="Postgresql icon"
-                                />
-
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
