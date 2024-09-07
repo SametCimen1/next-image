@@ -5,17 +5,19 @@ import Hero from "@/components/HeroSection";
 import HerolImageUpload from "@/components/HerolImageUpload" 
 import { SessionProvider } from "next-auth/react"
 import { auth } from "@/auth";
+import Footer from "@/components/Footer";
 
 export default async function Home() {
 
   const session = await auth();
 
   return (
-    <main className="flex flex-col mt-5 py-10">
+    <main className="flex flex-col" suppressHydrationWarning>
       <SessionProvider basePath={"/api/auth"} session={session}>
         <Hero />
         <HerolImageUpload />
-      </SessionProvider>    
+        <Footer/>
+      </SessionProvider>
     </main>
   );
 }

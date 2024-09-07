@@ -10,7 +10,7 @@ export default function Page({obj}:{obj:string}){
 
     return(
         <div
-        className="w-1/4 "
+        className="w-1/5"
         >
             <Link 
                 key={obj} 
@@ -20,7 +20,7 @@ export default function Page({obj}:{obj:string}){
                     src={obj}
                     width={500}
                     height={500}
-                    className="rounded duration-200 hover:scale-105"
+                    className="rounded duration-200 hover:scale-105 w-full"
                     alt = "image from aws s3" />                    
             </Link>
         </div>

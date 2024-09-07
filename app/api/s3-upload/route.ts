@@ -48,6 +48,7 @@ async function uploadFileToS3(file:Buffer, fileName:string){
     Body: fileBuffer,
     ContentType: "image/jpg"
   }
+
   const command = new PutObjectCommand(params);
   await s3Client.send(command);
   return fileName;
@@ -87,10 +88,17 @@ export async function POST(request:Request){
       })
     
       const response = await uploadResponse.text();
+      console.log('email')
+      console.log(email);
 
+      if(email === ''){
+        console.log('insert without email')
+        await pool.query("INSERT INTO image_urls(image_url, user_email) VALUES($1, $2)", [fields.key, 'local']);
+      }else{
+        await pool.query("INSERT INTO image_urls(image_url, user_email) VALUES($1, $2)", [fields.key, email]);
+      }
     
 
-      await pool.query("INSERT INTO image_urls(image_url, user_email) VALUES($1, $2)", [fields.key, email])
     
     
       if (uploadResponse.ok) {
@@ -100,7 +108,7 @@ export async function POST(request:Request){
     }
 
      
-      return NextResponse.json({success: true, msg:"ok"})
+      return NextResponse.json({success: true, url:fields.key})
     } catch (error) {
       console.log("ERROR OCCURED")
       console.log(error);

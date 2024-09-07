@@ -36,6 +36,7 @@ export default function Page({url}:{url:string}){
                     alt = "image from s3 bucket"
                     className="w-2/3"
                     style={{filter:`brightness(${brightness})  saturate(${saturation}%) blur(${blurAmount}px) sepia(${sepia}%)`}}
+                    priority
                 />
                 <div className="ml-2 ">
                     <div className="flex">
