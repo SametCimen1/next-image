@@ -4,10 +4,10 @@ import Link from "next/link";
 
 export default function Footer(){
     return(
-        <div className='mt-20 flex flex-col items-center gap-4'>
+        <div className='mt-20 flex flex-col items-center gap-4 w-4/5 m-auto' >
 
 
-<div className="mt-20 w-full bg">
+<div className="mt-10 w-full">
         
         <footer className="rounded-lg  w-full">
             <div className="w-full mx-auto md:py-8">

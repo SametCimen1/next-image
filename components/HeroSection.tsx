@@ -1,3 +1,4 @@
+
 import { ExternalLink } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
@@ -5,10 +6,13 @@ import { Button, buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
+import { auth } from '@/auth'
 
-const Hero = () => {
+export default async function Hero(){
+
+
     return (
-        <section className='relative overflow-hidden py-32'>
+        <section className='relative overflow-hidden py-32 w-4/5 m-auto'>
             <div className='container'>
                 <div className="absolute inset-x-0 top-0 z-10 flex size-full items-center justify-center opacity-100">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1125">
@@ -302,5 +306,3 @@ const Hero = () => {
         </section>
     )
 }
-
-export default Hero;

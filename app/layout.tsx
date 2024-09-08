@@ -17,7 +17,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn("w-4/5 m-auto", inter.className)}>
+      {/* <body className={cn("w-4/5 m-auto", inter.className)}> */}
+      <body className={cn("", inter.className)}>
         <Nav/>
         {children}
       </body>

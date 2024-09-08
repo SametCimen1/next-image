@@ -12,7 +12,7 @@ export default function Page(){
     console.log(image_url)  
     return(
         <div>
-            <EditImage url={image_url}/>
+        <EditImage url={image_url}/>
         </div>
     )
 }

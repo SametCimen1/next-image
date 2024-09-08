@@ -9,7 +9,7 @@ export default async function Nav(){
 
 
         return(
-            <header className=' py-8 z-50'>
+            <header className=' py-8 z-50 w-4/5 m-auto'>
                 <nav className=''>
                     <ul className='flex  justify-between items-center md:gap-8 gap-4 md:flex-row'>
                         <li className='flex w-40 md:flex-1 lg:w-full'>
