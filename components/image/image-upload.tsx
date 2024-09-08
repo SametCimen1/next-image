@@ -27,13 +27,13 @@ async function uploadDocuments(
         localStorage.setItem("image_url", response.url);
     }
 
-    return response;
+    return response.url;
 }
 
 
 
   
-export default function ImageUpload(){
+export  default  function ImageUpload({type}:{type:string}){
     const {acceptedFiles, getRootProps, getInputProps} = useDropzone({maxFiles:1});
     const { data: session, update } = useSession()
     const router = useRouter();
@@ -46,6 +46,8 @@ export default function ImageUpload(){
             if(email === undefined || email ===''){
                 console.log("SET LOCAL STORAGE")
                 router.push('/dashboard/edit-image', { scroll: false })
+            }else if(type === "home" && email !== undefined){
+                router.push(`/dashboard/`, { scroll: false })
             }
         }
     }
@@ -62,7 +64,7 @@ export default function ImageUpload(){
       
     return (
         <section className="w-full mt-5">
-          <div {...getRootProps({className: 'dropzone cursor-pointer border border-dashed w-4/5 min-w-96 text-center p-5 hover:bg-blue-200'})}>
+          <div {...getRootProps({className: 'dropzone cursor-pointer border border-dashed min-w-96 text-center p-5 hover:bg-blue-200'})}>
             <input {...getInputProps()}/>
             <Download className='mx-auto mb-2'/>
             <span className=''>Upload Files</span>

@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 export default function Desc(){
     return(
         <div className="relative mt-10 py-20">
-            <div className="py-32 bg-[#ddd1f6] bg-blue-200 w-full">
+            <div className="py-32  bg-blue-200 w-full">
                 <div className=" text-4xl text-center font-medium text-blue-500">
                     <h2>Go from text to image in seconds with generative AI</h2>
                 </div>
@@ -22,7 +23,9 @@ export default function Desc(){
                         <div>
                             <span>Sign in to use AI image create feature</span>
                         </div>
-                        <Button className="w-min w-1/3 mx-auto" variant={'default'}>Login</Button>
+                        <Link  href='/auth/login'>
+                            <Button className="w-1/3 mx-auto" variant={'default'}>Login</Button>                        
+                        </Link>
                     </div>
                 </div>
             </div>

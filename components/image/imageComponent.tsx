@@ -10,7 +10,7 @@ export default function Page({obj}:{obj:string}){
 
     return(
         <div
-        className="w-1/5"
+        className="w-1/5 customWidth content-start"
         >
             <Link 
                 key={obj} 
