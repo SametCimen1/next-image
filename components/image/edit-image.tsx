@@ -9,7 +9,7 @@ import { Button } from "../ui/button";
 export default function Page({url}:{url:string}){
     const domEl = useRef(null);
 
-    const [brightness, setBrightness] = useState(1);
+    const [brightness, setBrightness] = useState(100);
     const [saturation, setSaturation] = useState(100);
     const [blurAmount, setBlurAmount] = useState(0);
     const [sepia, setSepia] = useState(0);
@@ -35,14 +35,15 @@ export default function Page({url}:{url:string}){
                     height={500}
                     alt = "image from s3 bucket"
                     className="w-2/3"
-                    style={{filter:`brightness(${brightness})  saturate(${saturation}%) blur(${blurAmount}px) sepia(${sepia}%)`}}
+                    style={{filter:`brightness(${brightness}%)  saturate(${saturation}%) blur(${blurAmount}px) sepia(${sepia}%)`}}
                     priority
                 />
                 <div className="ml-2 ">
-                    <div className="flex">
+                    <div className="flex flex-col">
                         <label>Brightness</label>
-                        <input type="range" min="0" max="200" onChange={(e) => setBrightness(parseInt(e.target.value)/100) } placeholder="Brightness"/>
-                        <span className="ml-2">{parseInt((brightness*100).toString())}</span>
+
+                        <input type="range" min="0" max="200" onChange={(e) => setBrightness(parseInt(e.target.value)) } placeholder="Brightness"/>
+                        <span className="ml-2">{parseInt((brightness).toString())}</span>
                     </div>
                     <div className="flex">
                         <label>Saturation</label>

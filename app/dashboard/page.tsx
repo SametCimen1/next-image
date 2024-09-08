@@ -29,7 +29,9 @@ export default async function Page(){
 
             <SessionProvider basePath={"/api/auth"} session={session}>
                 <ClientPage/>
-                <ImageUpload/>
+                <div className='w-4/5 m-auto'>
+                    <ImageUpload/>
+                </div>
                 <Link href="/dashboard/create-image">
                     <Button>
                         Create-Image with AI

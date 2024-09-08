@@ -11,7 +11,7 @@ export default function Page(){
 
     if(!session?.user) return null;
     return(
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center w-4/5 m-auto">
             <Image
                 src = {session.user?.image || ""}
                 alt='User Icon'

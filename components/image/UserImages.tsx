@@ -25,9 +25,9 @@ export default async function UserImages(){
  
 
     return(
-        <div className="mt-5 w-full">
+        <div className="mt-5 w-4/5 m-auto">
             <span>My Images</span>
-            <div className="flex flex-wrap gap-1 justify-between ">
+            <div className="flex flex-wrap gap-1 content-start">
                 {image_url.map((obj:string) => (
                     <ImageComponent key={obj} obj = {obj}/>
                 ))}

@@ -108,6 +108,7 @@ export async function POST(request:Request){
     }
 
      
+      revalidatePath('/dashboard')
       return NextResponse.json({success: true, url:fields.key})
     } catch (error) {
       console.log("ERROR OCCURED")
