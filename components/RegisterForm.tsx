@@ -60,7 +60,7 @@ export default function Page(){
             if(response.error){
 
             }else{
-                router.push('/home')
+                router.push('/dashboard')
             }
         } catch (error) {
             console.log(error)

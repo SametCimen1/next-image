@@ -17,10 +17,14 @@ const nextConfig = {
             {
                 protocol:"https",
                 hostname:"skillicons.dev"
+            },
+            {
+                protocol:"https",
+                hostname:"oaidalleapiprodscus.blob.core.windows.net"
             }
         ]
-    }
-};
-
+    },
+    
+}
 
 export default nextConfig;
