@@ -32,7 +32,7 @@ export default async function Page(){
                 <div className='w-4/5 m-auto'>
                     <ImageUpload type={"dashboard"}/>
                 </div>
-                <Link href="/dashboard/create-image">
+                <Link href="/dashboard/create-image">   
                     <Button>
                         Create-Image with AI
                     </Button>

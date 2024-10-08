@@ -78,9 +78,9 @@ export const UserButton = ({user}: Session) => {
                     <DropdownMenuItem onClick={() => router.push('/dashboard')}  className=" group py-2 font-medium cursor-pointer transition-all duration-500">
                         <User size ={14} className="mr-3 "/>Dashboard
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => router.push('/dashboard/settings')}  className=" group py-2 font-medium cursor-pointer transition-all duration-500">
+                    {/* <DropdownMenuItem onClick={() => router.push('/dashboard/settings')}  className=" group py-2 font-medium cursor-pointer transition-all duration-500">
                         <Settings size ={14} className="mr-3 group-hover:rotate-180 transition-all duration-300 ease-in-out"/>Settings
-                    </DropdownMenuItem>
+                    </DropdownMenuItem> */}
                     <DropdownMenuItem  className=" group py-2 font-medium cursor-pointer transition-all duration-500 focus:bg-destructive/30" onClick = {() => signOut()}>
                        <LogOut size = {14} className="mr-3 group-hover:scale-75 transition-all duration-300 ease-in-out"/>Sign Out
                     </DropdownMenuItem>

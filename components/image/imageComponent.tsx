@@ -10,17 +10,17 @@ export default function Page({obj}:{obj:string}){
 
     return(
         <div
-        className="w-1/5 customWidth content-start"
+        className="item"
         >
             <Link 
                 key={obj} 
                 href = {`/dashboard/edit-image/${getImageKey(obj)}`}
-                className="bg-blue-500 relative">
+                className=" relative ">
                 <Image 
                     src={obj}
                     width={500}
                     height={500}
-                    className="rounded duration-200 hover:scale-105 w-full"
+                    className="rounded w-full mb-5 h-full"
                     alt = "image from aws s3" />                    
             </Link>
         </div>

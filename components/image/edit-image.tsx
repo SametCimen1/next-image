@@ -17,12 +17,23 @@ export default function Page({url}:{url:string}){
 
     const downloadImage = async () => {
         if(domEl.current === null) return;
-        const dataUrl = await htmlToImage.toPng(domEl.current);
-        console.log(dataUrl)
-        const link = document.createElement('a');
-        link.download = 'next-image.png';
-        link.href = dataUrl;
-        link.click();
+        try {
+            console.log("getting image")
+            console.log(domEl.current)
+            const dataUrl = await htmlToImage.toPng(domEl.current);
+            console.log("DATA URL")
+            console.log(dataUrl)
+            console.log(dataUrl)
+            const link = document.createElement("a");
+            link.href = url;
+            link.setAttribute("download", "image.png"); //or any other extension
+            document.body.appendChild(link);
+            link.click();            
+        } catch (error) {
+            console.log("ERROR")
+            console.log(error)
+        }
+
     }
 
     return(
