@@ -15,13 +15,13 @@ export default function Desc(){
                     </div>
                     <div className="w-1/3 flex flex-col gap-6">
                         <div>
-                            <span>Sign in to use AI image create feature</span>
+                            <span><span className="px-4 py-2 bg-pink-50 rounded-full mr-2">1</span>Sign in to use AI image create feature</span>
                         </div>
                         <div>
-                            <span>Sign in to use AI image create feature</span>
+                            <span><span className="px-4 py-2 bg-pink-50 rounded-full mr-2">2</span>Sign in to use AI image create feature</span>
                         </div>
                         <div>
-                            <span>Sign in to use AI image create feature</span>
+                            <span><span className="px-4 py-2 bg-pink-50 rounded-full mr-2">3</span>Sign in to use AI image create feature</span>
                         </div>
                         <Link  href='/auth/login'>
                             <Button className="w-1/3 mx-auto" variant={'default'}>Login</Button>                        

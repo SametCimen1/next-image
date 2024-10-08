@@ -1,5 +1,5 @@
 'use client'
-import {useCallback} from 'react'
+import {useCallback, useState} from 'react'
 import useSWRMutation from "swr/mutation";
 import { IconUpload, IconPhoto, IconX } from '@tabler/icons-react';
 import { useSession } from "next-auth/react"
@@ -35,6 +35,7 @@ async function uploadDocuments(
   
 export  default  function ImageUpload({type}:{type:string}){
     const {acceptedFiles, getRootProps, getInputProps} = useDropzone({maxFiles:1});
+    const [isUploading, setIsUploading] = useState(false);
     const { data: session, update } = useSession()
     const router = useRouter();
 
@@ -42,6 +43,7 @@ export  default  function ImageUpload({type}:{type:string}){
         if(!files){
             alert("no file attached")
         }else{
+            setIsUploading(true);
             uploadDocuments('/api/s3-upload', files, email || "");
             if(email === undefined || email ===''){
                 console.log("SET LOCAL STORAGE")
@@ -49,6 +51,7 @@ export  default  function ImageUpload({type}:{type:string}){
             }else if(type === "home" && email !== undefined){
                 router.push(`/dashboard/`, { scroll: false })
             }
+            setIsUploading(false);
         }
     }
     const files = acceptedFiles.map((file:FileWithPath) => {
@@ -64,6 +67,11 @@ export  default  function ImageUpload({type}:{type:string}){
       
     return (
         <section className="w-full mt-5">
+          {isUploading &&
+            <div className='absolute w-screen h-screen z-50 bg-gray-100'>
+              <p>Hello</p>
+            </div>
+          }
           <div {...getRootProps({className: 'dropzone cursor-pointer border border-dashed min-w-96 text-center p-5 hover:bg-blue-200'})}>
             <input {...getInputProps()}/>
             <Download className='mx-auto mb-2'/>

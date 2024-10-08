@@ -92,3 +92,7 @@
   height: 100%;
   align-content: flex-start;
 }
+.fillWidth{
+  width: calc(40%);
+}
+

@@ -9,7 +9,7 @@ import { auth } from "@/auth";
 import Footer from "@/components/Footer";
 import Desc from '@/components/Desc'
 import AImages from '@/components/AImages';
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 export default async function Home() {
 
