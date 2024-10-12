@@ -2,13 +2,31 @@
 import { Button } from "@/components/ui/button";
 import { createImageWithAI } from "@/server/actions/create-image"
 import { useAction } from "next-safe-action/hooks";
-import { useState, useEffect, KeyboardEvent } from "react";
+import { useState, useEffect, KeyboardEvent, useRef } from "react";
+import { toPng } from "html-to-image";
 import Image from "next/image";
 
 export default function Page(){
     const [textValue, setTextValue] = useState("");
     const [isWaiting, setIsWaiting] = useState(false);
     const [imageUrl, setImageUrl] = useState("")
+    const domEl = useRef(null);
+
+
+    const downloadImage = () => {
+      if(domEl.current === null) return;
+      toPng(domEl.current, { cacheBust: false })
+      .then((dataUrl) => {
+          const link = document.createElement("a");
+          link.download = "my-image-name.png";
+          link.href = dataUrl;
+          link.click();
+      })
+      .catch((err) => {
+          console.log('error')
+          console.log(err);
+      });
+    }
 
     const {execute, status} = useAction(createImageWithAI, {
         onSuccess(data:any){
@@ -62,21 +80,22 @@ export default function Page(){
                 Send
               </Button>  
 
-              {(imageUrl !== '') ? 
+              {(imageUrl === '') ? 
                 <div>
                   <p>Waiting</p>
                 </div>
               :
-                <div className="mt-10 w-3/4 flex flex-col  items-center">
+                <div className="mt-10 w-3/4 flex flex-col  items-start">
                   <Image
-                    src = {"https://oaidalleapiprodscus.blob.core.windows.net/private/org-pvbs6bkJb51HInplhjF9yIsB/user-WgcvGU4MuhrPMBu8bDy1hXWy/img-czNHT3oaUecrlyyBZ9ssYr1U.png?st=2024-09-07T23%3A02%3A57Z&se=2024-09-08T01%3A02%3A57Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-09-08T00%3A02%3A57Z&ske=2024-09-09T00%3A02%3A57Z&sks=b&skv=2024-08-04&sig=DhGlSd8JXN2kXUUUUgeN%2BaXW1S/FY/XMf7PYf4vPEgs%3D"} 
+                    src = {imageUrl} 
                     width={1024}
                     height={1024}
                     alt="image from Open-ai"
                     className="w-1/2"
+                    ref = {domEl}
                   />
                   <div className="flex w-min mt-10">
-                    <Button className="">Download</Button>
+                    <Button className="" onClick={downloadImage}>Download</Button>
                     <Button className="ml-10">Save to My profile</Button>
                     <Button className="ml-10">Edit image</Button>
                   </div>
