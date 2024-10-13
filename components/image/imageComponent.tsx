@@ -4,13 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 
-export default function Page({obj}:{obj:string}){
+export default function Page({obj, index}:{obj:string, index:number}){
 
-    const [imageHover, setImageHover] = useState(false);
 
     return(
         <div
-        className="item"
+            className={`item ${index != 8 ?"my-2":"my-0"}`}
         >
             <Link 
                 key={obj} 
@@ -20,7 +19,7 @@ export default function Page({obj}:{obj:string}){
                     src={obj}
                     width={500}
                     height={500}
-                    className="rounded w-full mb-5 h-full"
+                    className="rounded w-full h-full"
                     alt = "image from aws s3" />                    
             </Link>
         </div>
