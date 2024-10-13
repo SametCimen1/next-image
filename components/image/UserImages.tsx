@@ -25,11 +25,10 @@ export default async function UserImages(){
  
 
     return(
-        <div className="mt-5 w-4/5 m-auto">
-            <span>My Images</span>
-            <div className="columns-1 lg:columns-4 w-full justify-center">
-                {image_url.map((obj:string) => (
-                    <ImageComponent key={obj} obj = {obj}/>
+        <div className="mt-5 w-4/5 m-auto ">
+            <div className="columns-1 lg:columns-4 w-full gap-x-4">
+                {image_url.map((obj:string, i:number) => (
+                    <ImageComponent key={obj} index={i} obj = {obj}/>
                 ))}
             </div>
         </div>

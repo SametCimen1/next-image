@@ -45,6 +45,7 @@ function CenterMode() {
     };
     return (
       <div className="slider-container w-3/4 mx-auto  ">
+        <h2 className=" text-4xl text-center font-medium">Sample images created using AI</h2>
         <Slider {...settings}>
         <div className="p-4">
             <Image
