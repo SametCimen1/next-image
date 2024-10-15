@@ -69,7 +69,7 @@ export default function LoginForm(){
 
     return(
         <div className="">
-            <div className="border  p-4 max-w-3xl mx-auto">
+            <div className="">
                 <Form {...form}>
                     <form onSubmit={handleFormSubmit}>
                         <div className="">
@@ -106,9 +106,9 @@ export default function LoginForm(){
                             />
                             )}
 
-                            {!showTwoFactor && (                            
-                                <>
-                                <FormLabel>Email</FormLabel>
+                            {/* {!showTwoFactor && (                            
+                                <> */}
+                                {/* <FormLabel>Email</FormLabel>
                                 <FormField
                                     control={form.control}
                                     name="email"
@@ -137,10 +137,10 @@ export default function LoginForm(){
                                         <FormMessage />
                                     </FormItem>
                                     )}
-                                />
-                                </>
-                            )}
-                             <FormSuccess message = {success}/>
+                                /> */}
+                                {/* </>
+                            )} */}
+                             {/* <FormSuccess message = {success}/>
                              <FormError message = {error}/>
                              <div className="flex flex-col items-start">
                                 <Button className="px-0" size = {'sm'} variant={'link'}>
@@ -153,18 +153,18 @@ export default function LoginForm(){
                                         Don&apos;t have an account?
                                     </Link>
                                 </Button>   
-                            </div>
+                            </div> */}
 
                         </div>
 
-                        <Button type ='submit' className={cn('w-full my-4')}>
+                        {/* <Button type ='submit' className={cn('w-full my-4')}>
                             {showTwoFactor ? "Verify" : "Sign In"}
-                        </Button>
+                        </Button> */}
 
                     </form>
                 </Form>
             </div>
-            <div className="border  p-4 max-w-3xl mx-auto">
+            <div className="  p-4 max-w-3xl mx-auto">
                 <SocialLoginForm type="login"/>
             </div>
         </div>

@@ -32,7 +32,7 @@ function SampleNextArrow(props:any) {
 
 function CenterMode() {
     const settings = {
-      className: "center",
+      className: "center w-full",
       centerMode: true,
       infinite: true,
       centerPadding: "60px",
