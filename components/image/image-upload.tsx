@@ -47,10 +47,14 @@ export  default  function ImageUpload({type}:{type:string}){
             uploadDocuments('/api/s3-upload', files, email || "");
             if(email === undefined || email ===''){
                 console.log("SET LOCAL STORAGE")
-                router.push('/dashboard/edit-image', { scroll: false })
+                router.push('/dashboard/edit-image')
             }else if(type === "home" && email !== undefined){
-                router.push(`/dashboard/`, { scroll: false })
+                router.push(`/dashboard/`)
             }
+            else if(type === "dashboard" && email !== undefined){
+              console.log(' in dashboard ')
+              router.refresh();
+          }
             setIsUploading(false);
         }
     }

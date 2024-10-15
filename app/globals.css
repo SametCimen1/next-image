@@ -93,6 +93,11 @@
   align-content: flex-start;
 }
 .fillWidth{
-  width: calc(40%);
+  width: 100%;
+}
+@media screen and (min-width:1000px) {
+  .fillWidth{
+    width: calc(40%);
+  }
 }
 

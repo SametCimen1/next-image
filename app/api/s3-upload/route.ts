@@ -103,6 +103,7 @@ export async function POST(request:Request){
     
       if (uploadResponse.ok) {
         console.log('File uploaded successfully');
+
     } else {
         console.error('Failed to upload file');
     }

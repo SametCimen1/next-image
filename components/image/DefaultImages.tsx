@@ -8,7 +8,7 @@ export default function Page(){
 
     return (
         <div className="">
-            <div className="flex flex-col flex-wrap md:flex-row xl:flex-row xl:justify-end  gap-2">
+            <div className="flex flex-col flex-wrap md:flex-row xl:flex-row xl:justify-end  gap-2 ">
                 {urls.map((image_url) => (
                     <Link
                         href={`dashboard/edit-image/${image_url}`}
