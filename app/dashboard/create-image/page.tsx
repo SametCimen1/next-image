@@ -5,6 +5,7 @@ import { useAction } from "next-safe-action/hooks";
 import { useState, useEffect, KeyboardEvent, useRef } from "react";
 import { toPng } from "html-to-image";
 import Image from "next/image";
+import {auth} from '@/auth'
 
 export default function Page(){
     const [textValue, setTextValue] = useState("");
@@ -72,6 +73,7 @@ export default function Page(){
         
 
     return(
+      
         <main className="w-4/5 m-auto">
               <input type="text" id="first_name" className="z-99 w-full  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                   placeholder="Describe your image"
@@ -87,7 +89,7 @@ export default function Page(){
               </Button>  
               {(imageUrl==='' && !isWaiting) ? 
                 <div className="mt-2">
-                  <p>fill the input to get an image</p>
+                  {/* <p>fill the input to get an image</p> */}
                 </div>
                 :
                 <div>

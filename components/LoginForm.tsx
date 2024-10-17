@@ -164,7 +164,7 @@ export default function LoginForm(){
                     </form>
                 </Form>
             </div>
-            <div className="  p-4 max-w-3xl mx-auto">
+            <div className="  py-4  w-4/5 mx-auto">
                 <SocialLoginForm type="login"/>
             </div>
         </div>
