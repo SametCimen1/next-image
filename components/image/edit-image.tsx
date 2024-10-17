@@ -72,17 +72,17 @@ export default function Page({url}:{url:string}){
                     </div>
                     <div className="flex bg-blue-300 p-3 rounded-lg mt-2">
                         <label>Saturation</label>
-                        <input type="range" min="0" max="200" value={saturation} onChange={(e) => setSaturation(parseInt(e.target.value)) } placeholder="Saturation"/>
+                        <input className="ml-2"  type="range" min="0" max="200" value={saturation} onChange={(e) => setSaturation(parseInt(e.target.value)) } placeholder="Saturation"/>
                         <span className="ml-2">{parseInt((saturation).toString())}</span>
                     </div>
                     <div className="flex bg-green-300 p-3 rounded-lg mt-2">
                         <label>Blur Amount</label>
-                        <input type="range" min="0" max="10" value={blurAmount}  onChange={(e) => setBlurAmount(parseInt(e.target.value)) } placeholder="Blue Amount"/>
+                        <input className="ml-2"  type="range" min="0" max="10" value={blurAmount}  onChange={(e) => setBlurAmount(parseInt(e.target.value)) } placeholder="Blue Amount"/>
                         <span className="ml-2">{blurAmount}</span>
                     </div>
                     <div className="flex bg-yellow-300 p-3 rounded-lg mt-2">
                         <label>Sepia</label>
-                        <input type="range" min="0" max="100" value={sepia} onChange={(e) => setSepia(parseInt(e.target.value)) } placeholder="Sepia"/>
+                        <input className="ml-2" type="range" min="0" max="100" value={sepia} onChange={(e) => setSepia(parseInt(e.target.value)) } placeholder="Sepia"/>
                         <span className="ml-2">{sepia}</span>
                     </div>
                     <Button className="mt-2" onClick={downloadImage}>Download!</Button>

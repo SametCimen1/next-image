@@ -4,10 +4,10 @@ import Image from "next/image";
 
 export default function Page({type}:{type:string}){
     return(
-        <form className="mt-5" action={socialLogin}>
+        <form className="mt-5 w-full" action={socialLogin} > 
             <Button 
                 variant={"outline"}
-                className="rounded p-2 w-full"
+                className="rounded  w-full"
                 type="submit" name="action" value="github">
                 {type === "register" ? 'Sign up with Github' : 'Sign in with Github'}
                 <Image

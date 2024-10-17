@@ -4,7 +4,7 @@ import Image from "next/image"
 import { getImageUrl } from "@/lib/utils"
 import Link from "next/link";
 export default function Page(){
-    const urls = ['pDgD4qOhNfn4NpG6RjeqF', 'ErJ4vNWk0ZfobHnvTnf6M', 'ejD1n-UcWatU29GFu0M-S','ejD1n-UcWatU29GFu0M-S']
+    const urls = ['34iGOQ09-SctmN7zcuk5B', 'ErJ4vNWk0ZfobHnvTnf6M', 'ejD1n-UcWatU29GFu0M-S','ejD1n-UcWatU29GFu0M-S']
 
     return (
         <div className="">
