@@ -21,7 +21,8 @@ const nextConfig = {
             {
                 protocol:"https",
                 hostname:"oaidalleapiprodscus.blob.core.windows.net"
-            }
+            },
+            
         ]
     },
     

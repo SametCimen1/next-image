@@ -3,10 +3,11 @@ import {useCallback, useState} from 'react'
 import useSWRMutation from "swr/mutation";
 import { IconUpload, IconPhoto, IconX } from '@tabler/icons-react';
 import { useSession } from "next-auth/react"
-import { useRouter } from 'next/navigation';
 import {useDropzone, FileWithPath } from 'react-dropzone'
 import { Button } from '../ui/button';
 import { Download, Files } from 'lucide-react';
+import { useRouter } from "next/navigation";
+
 
 async function uploadDocuments(
     url: string,
@@ -33,13 +34,13 @@ async function uploadDocuments(
 
 
   
-export  default  function ImageUpload({type}:{type:string}){
+export  default function ImageUpload({type}:{type:string}){
     const {acceptedFiles, getRootProps, getInputProps} = useDropzone({maxFiles:1});
     const [isUploading, setIsUploading] = useState(false);
     const { data: session, update } = useSession()
     const router = useRouter();
 
-    function uploadFiles(files: any, email: string | null | undefined){
+     function uploadFiles(files: any, email: string | null | undefined){
         if(!files){
             alert("no file attached")
         }else{
@@ -52,11 +53,12 @@ export  default  function ImageUpload({type}:{type:string}){
                 router.push(`/dashboard/`)
             }
             else if(type === "dashboard" && email !== undefined){
-              console.log(' in dashboard ')
+              console.log(' in dashboard ');
               router.refresh();
           }
             setIsUploading(false);
         }
+        router.refresh();
     }
     const files = acceptedFiles.map((file:FileWithPath) => {
       return(
@@ -67,6 +69,12 @@ export  default  function ImageUpload({type}:{type:string}){
         )
       )
     });
+
+
+    const callFunctions  = async() => {
+        uploadFiles(acceptedFiles, session?.user?.email);
+        router.refresh();
+    }
 
       
     return (
@@ -86,7 +94,7 @@ export  default  function ImageUpload({type}:{type:string}){
           </div>
           <Button 
             className='mt-5 flex '
-            onClick={() => uploadFiles(acceptedFiles, session?.user?.email)}>Upload</Button>
+            onClick={() => callFunctions()}>Upload</Button>
         </section>
     );
 }

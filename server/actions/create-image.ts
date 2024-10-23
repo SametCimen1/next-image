@@ -3,6 +3,7 @@ import OpenAI from "openai";
 import dotenv from 'dotenv'
 import { createSafeActionClient } from "next-safe-action"
 import { z } from "zod";
+import pool from '@/db';
 
 dotenv.config();
 
@@ -14,6 +15,12 @@ const openai = new OpenAI({
 
 const schema = z.object({
     textValue: z.string().min(3).max(100)
+});
+
+
+const fileSchema = z.object({
+    image_url: z.string().min(3).max(100),
+    email: z.string().min(3).max(100),
 });
 
 
@@ -41,3 +48,20 @@ export const createImageWithAI = action
     return image_url
 
 })
+
+export const deleteFile = action
+    .schema(fileSchema)
+    .action(async ({ parsedInput: { image_url, email } }) => {
+
+    console.log("HERE")
+    const data =  await pool.query("DELETE FROM image_urls WHERE image_url = $1", [image_url]);
+
+
+    
+    console.log(image_url);
+
+
+    
+})
+  
+  
