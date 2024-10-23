@@ -78,7 +78,7 @@ function CenterMode() {
           />
         </div>
         {urls.map((image_url) => (
-          <div className="p-4">
+          <div className="p-4" key = {image_url}>
             <Image
               src={getImageUrl(image_url)}
               width={200}
