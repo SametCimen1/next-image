@@ -12,9 +12,7 @@ export default function Page() {
   const router = useRouter();
   const [textValue, setTextValue] = useState("");
   const [isWaiting, setIsWaiting] = useState(false);
-  const [imageUrl, setImageUrl] = useState(
-    "https://oaidalleapiprodscus.blob.core.windows.net/private/org-pvbs6bkJb51HInplhjF9yIsB/user-WgcvGU4MuhrPMBu8bDy1hXWy/img-HUcTO4Wq2a2m9Sd1kT0PtH0D.png?st=2024-10-23T02%3A52%3A28Z&se=2024-10-23T04%3A52%3A28Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-10-22T19%3A02%3A29Z&ske=2024-10-23T19%3A02%3A29Z&sks=b&skv=2024-08-04&sig=otaEKtscVCXqsV/GknSwARbz1Cu7I4eptWnFLVdMdW8%3D"
-  );
+  const [imageUrl, setImageUrl] = useState("");
   const [mode, editMode] = useState(0);
   const domEl = useRef(null);
 
@@ -26,8 +24,6 @@ export default function Page() {
   const { execute, status } = useAction(createImageWithAI, {
     onSuccess(data: any) {
       if (data) {
-        console.log("RETURNED FROM AI CALLL");
-        console.log(data);
         setImageUrl(data.data);
         setIsWaiting(false);
       }
@@ -67,22 +63,6 @@ export default function Page() {
 
   const downloadImage = async () => {
     if(domEl.current === null) return;
-    // try {
-    //     console.log("getting image")
-    //     console.log(domEl.current)
-    //     const dataUrl = await htmlToImage.toSvg(domEl.current);
-    //     console.log("DATA URL")
-    //     console.log(dataUrl)
-    //     const link = document.createElement("a");
-    //     link.href = url;
-    //     link.setAttribute("download", "image.png"); //or any other extension
-    //     document.body.appendChild(link);
-    //     link.click();            
-    // } catch (error) {
-    //     console.log("ERROR")
-    //     console.log(error)
-    // }
-
     toPng(domEl.current, { cacheBust: false })
     .then((dataUrl) => {
         const link = document.createElement("a");

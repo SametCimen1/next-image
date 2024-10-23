@@ -42,8 +42,6 @@ export const createImageWithAI = action
     const image_url = response.data[0].url;
     // const image_url="none"
     
-    console.log('image url is')
-    console.log(image_url)
 
     return image_url
 
@@ -53,8 +51,9 @@ export const deleteFile = action
     .schema(fileSchema)
     .action(async ({ parsedInput: { image_url, email } }) => {
 
-    console.log("HERE")
+
     const data =  await pool.query("DELETE FROM image_urls WHERE image_url = $1", [image_url]);
+
 
 
     

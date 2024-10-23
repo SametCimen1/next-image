@@ -21,10 +21,8 @@ async function uploadDocuments(
     body.append('email', email)
 
     const response = await (await fetch(url, { method: "POST", body })).json();
-    console.log("TYpe of email")
-    console.log(response)
+
     if(email === undefined || email ===''){
-        console.log("SET LOCAL STORAGE")
         localStorage.setItem("image_url", response.url);
     }
 
@@ -47,13 +45,11 @@ export  default function ImageUpload({type}:{type:string}){
             setIsUploading(true);
             uploadDocuments('/api/s3-upload', files, email || "");
             if(email === undefined || email ===''){
-                console.log("SET LOCAL STORAGE")
                 router.push('/dashboard/edit-image')
             }else if(type === "home" && email !== undefined){
                 router.push(`/dashboard/`)
             }
             else if(type === "dashboard" && email !== undefined){
-              console.log(' in dashboard ');
               router.refresh();
           }
             setIsUploading(false);

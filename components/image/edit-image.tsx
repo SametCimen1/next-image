@@ -5,16 +5,20 @@ import { useRef, useState } from "react";
 import * as htmlToImage from "html-to-image";
 import { useSession } from "next-auth/react";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 import { toPng } from "html-to-image";
 import { deleteFile } from "@/server/actions/create-image";
 import { useAction } from "next-safe-action/hooks";
 
 export default function Page({ url }: { url: string }) {
+  const router = useRouter();
+
+
   const { execute, status } = useAction(deleteFile, {
     onSuccess(data: any) {
       if (data) {
-        console.log("RETURNED FROM AI CALLL");
-        console.log(data);
+        router.push("/dashboard");
+        router.refresh();
       }
     },
     onError(error: any) {
