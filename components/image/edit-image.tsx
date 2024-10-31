@@ -59,7 +59,7 @@ export default function Page({ url }: { url: string }) {
     if (url === "local") {
       let value;
       value = localStorage.getItem("image_url") || "";
-      return value;
+      return getImageUrl(value);
     }
 
     return getImageUrl(url);
