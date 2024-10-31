@@ -10,6 +10,8 @@ import { toPng } from "html-to-image";
 import { deleteFile } from "@/server/actions/create-image";
 import { useAction } from "next-safe-action/hooks";
 
+
+
 export default function Page({ url }: { url: string }) {
   const router = useRouter();
 
@@ -139,7 +141,7 @@ export default function Page({ url }: { url: string }) {
             Download!
           </Button>
 
-          {session?.user?.email && (
+          {session?.user?.email==="cimensamet338@gmail.com" && (
             <Button
               className="mt-2 block"
               variant={"destructive"}
