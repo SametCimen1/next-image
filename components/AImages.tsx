@@ -1,5 +1,5 @@
 "use client";
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -41,19 +41,44 @@ function SamplePrevArrow(props: any) {
   );
 }
 
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height
+  };
+}
+
 function CenterMode() {
+  
+
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
   const settings = {
     className: "center w-full",
     centerMode: true,
     infinite: true,
     centerPadding: "60px",
-    slidesToShow: 3,
+    slidesToShow: windowDimensions.width < 700 ? 1 : 4,
     speed: 400,
     dots: true,
     autoplay: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+      console.log("window dimension")
+      console.log(windowDimensions);
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+
   return (
     <div className="slider-container w-3/4 mx-auto  ">
       <h2 className=" text-4xl text-center font-medium">
